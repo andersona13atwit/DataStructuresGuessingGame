@@ -22,7 +22,7 @@ public class GuessingGame {
 
         Random randint = new Random();
         for (int i = 0; i < size; i++) {
-            game.add(randint.nextInt(range));
+            game.add(randint.nextInt(range)+1);
         }
 
 
@@ -41,17 +41,20 @@ public class GuessingGame {
     }
     public void play(GuessingGame g, Scanner input){
         System.out.println(game);
-        while(numInstersections() != game.getSize()){
+        boolean gameGoing = true;
+        while(gameGoing){
             System.out.print("Next number please! ");
             g.addFromUser(input.nextInt());
             System.out.println();
-            System.out.println(user);
+            System.out.println(numInstersections() + " of the numbers you inputted are included");
 //            System.out.println(game.getSize() + " " + game.getSize() + " " + (user.getSize()>game.getSize()));
             if(user.getSize() == game.getSize()){
                 if(numInstersections() != game.getSize()) {
                     System.out.println("Incorrect!");
                     user.clear();
                 }
+                else
+                    gameGoing = false;
             }
         }
         System.out.println("You won!");
